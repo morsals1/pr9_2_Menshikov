@@ -1,0 +1,1 @@
+data class Schedule(val numberStation: Int, val time: String, val date: String)

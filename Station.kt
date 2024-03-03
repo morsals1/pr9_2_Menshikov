@@ -1,0 +1,1 @@
+data class Station(val number: Int, val name: String)

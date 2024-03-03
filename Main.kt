@@ -1,44 +1,29 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+fun convertTimeToInt(time: String): Pair<Int, Int> {
+    val parts = time.split(":").map { it.toInt() }
+    return Pair(parts[0], parts[1])
+}
+
+fun convertDateToInt(date: String): Triple<Int, Int, Int> {
+    val parts = date.split("/").map { it.toInt() }
+    return Triple(parts[0], parts[1], parts[2])
+}
+
 fun main() {
-    val driverManager = manager.DriverManager()
-    val vehicleManager = manager.VehicleManager()
-    val tripManager = manager.TripManager()
-    val dispatcher = dispatcher.Dispatcher(driverManager, vehicleManager, tripManager)
+    val stations = mutableListOf(
+        Station(1, "Дмитров"),
+        // Добавьте остальные станции
+    )
 
-    println("введите имя водителя")
-    val driver1 = driver.Driver("Водитель ${readln()!!.toString()}")
-    val driver2 = driver.Driver("Водитель ${readln()!!.toString()}")
-    driverManager.addDriver(driver1)
-    driverManager.addDriver(driver2)
+    val trains = mutableListOf(
+        Train(1, listOf(Schedule(1, "7:00", "01/03/2023"), Schedule(6, "17:00", "02/03/2023")), 89.0)
+    )
 
-    println("введите навзание автомобиля")
-    val vehicle1 = vehicle.Vehicle("Автомобиль ${readln()!!.toString()}")
-    val vehicle2 = vehicle.Vehicle("Автомобиль ${readln()!!.toString()}")
-    vehicleManager.addVehicle(vehicle1)
-    vehicleManager.addVehicle(vehicle2)
-
-    println("введите пункт назначения")
-    val trip1 = trip.Trip("Пункт назначения ${readln()!!.toString()}")
-    val trip2 = trip.Trip("Пункт назначения ${readln()!!.toString()}")
-    tripManager.addTrip(trip1)
-    tripManager.addTrip(trip2)
-
-    dispatcher.assignTripToDriver(driver1.name, trip1.destination)
-    dispatcher.assignTripToDriver(driver2.name, trip2.destination)
-
-    println("Назначенные рейсы:")
-    tripManager.getPendingTrips().forEach {
-        println("${it.destination} назначен на ${it.assignedDriver?.name} с автомобилем ${it.assignedVehicle?.model}")
-    }
-
-    trip1.completeTrip()
-
-    println("Завершенные рейсы:")
-    tripManager.getPendingTrips().filter { it.isCompleted }.forEach {
-        println("${it.destination} завершен водителем ${it.assignedDriver?.name}")
-    }
-
-    println("Еще не завершенные рейсы:")
-    tripManager.getPendingTrips().filter { !it.isCompleted }.forEach {
-        println("${it.destination} еще не завершен и назначен водителю ${it.assignedDriver?.name}")
-    }
+    val railwayTicketOffice = RailwayTicketOffice(trains, stations)
+    println("От станции Дмитров")
+    println("Билет до Катуар на 9:00 01/03/2023")
+    railwayTicketOffice.registration("Катуар", "9:00", "01/03/2023")
+    railwayTicketOffice.searchTrain()
 }
