@@ -6,5 +6,4 @@ class Vehicle(val model: String) {
     fun repair() {
         isFunctional = true
     }
-    // Дополнительные методы и поля
 }
