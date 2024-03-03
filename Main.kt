@@ -32,13 +32,11 @@ fun main() {
 
     trip1.completeTrip()
 
-    // Выводим информацию о завершенных рейсах
     println("Завершенные рейсы:")
     tripManager.getPendingTrips().filter { it.isCompleted }.forEach {
         println("${it.destination} завершен водителем ${it.assignedDriver?.name}")
     }
 
-    // Выводим информацию о еще не завершенных рейсах
     println("Еще не завершенные рейсы:")
     tripManager.getPendingTrips().filter { !it.isCompleted }.forEach {
         println("${it.destination} еще не завершен и назначен водителю ${it.assignedDriver?.name}")
