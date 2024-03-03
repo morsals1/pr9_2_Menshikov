@@ -11,8 +11,7 @@ class Dispatcher(
     fun assignTripToDriver(driverName: String, tripDestination: String) {
         val driver = driverManager.getAvailableDrivers().find { it.name == driverName }
         val trip = tripManager.getPendingTrips().find { it.destination == tripDestination }
-        val vehicle = vehicleManager.getAvailableVehicles().firstOrNull() // Простая логика выбора автомобиля
-
+        val vehicle = vehicleManager.getAvailableVehicles().firstOrNull()
         if (driver != null && trip != null && vehicle != null) {
             trip.assignDriver(driver)
             trip.assignVehicle(vehicle)
