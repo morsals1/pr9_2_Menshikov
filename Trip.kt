@@ -19,5 +19,4 @@ class Trip(val destination: String) {
     fun assignVehicle(vehicle: Vehicle) {
         assignedVehicle = vehicle
     }
-    // Дополнительные методы и поля
 }
