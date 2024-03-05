@@ -13,13 +13,10 @@ fun convertDateToInt(date: String): Triple<Int, Int, Int> {
 
 fun main() {
     val stations = mutableListOf(
-        Station(1, "Дмитров"),
-        // Добавьте остальные станции
-    )
+        Station(1, "Дмитров"),)
 
     val trains = mutableListOf(
-        Train(1, listOf(Schedule(1, "7:00", "01/03/2023"), Schedule(6, "17:00", "02/03/2023")), 89.0)
-    )
+        Train(1, listOf(Schedule(1, "7:00", "01/03/2023"), Schedule(6, "17:00", "02/03/2023")), 89.0))
 
     val railwayTicketOffice = RailwayTicketOffice(trains, stations)
     println("От станции Дмитров")
