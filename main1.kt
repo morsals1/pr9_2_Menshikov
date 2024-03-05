@@ -1,3 +1,5 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 fun main() {
     val driverManager = manager.DriverManager()
     val vehicleManager = manager.VehicleManager()
@@ -24,10 +26,8 @@ fun main() {
 
     dispatcher.assignTripToDriver(driver1.name, trip1.destination)
     dispatcher.assignTripToDriver(driver2.name, trip2.destination)
-    import java.time.LocalDateTime
-            import java.time.format.DateTimeFormatter
 
-            println("Назначенные рейсы:")
+    println("Назначенные рейсы:")
     tripManager.getPendingTrips().forEach {
         println("${it.destination} назначен на ${it.assignedDriver?.name} с автомобилем ${it.assignedVehicle?.model}")
     }
